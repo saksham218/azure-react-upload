@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+
 import AudioRecorder from './AudioRecorder';
+
+
 
 const AzureBlobUpload = () => {
     // const [selectedFile, setSelectedFile] = useState(null);
@@ -19,9 +22,12 @@ const AzureBlobUpload = () => {
         }
 
         try {
-            const storageAccountName = 'sakshamblobstorage';
-            const containerName = 'datacollectionblobstorage';
-            const sasToken = '?sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2023-10-09T12:03:58Z&st=2023-10-09T04:03:58Z&spr=https&sig=8WoViFuxRLDWcovNCXrDm3iM59vLXXWTdxN3aqB2jfQ%3D';
+            const storageAccountName = process.env.REACT_APP_STORAGE_ACCOUNT_NAME
+            const containerName = process.env.REACT_APP_CONTAINER_NAME;
+            const sasToken = process.env.REACT_APP_SAS_TOKEN;
+
+            console.log('storageAccountName:', storageAccountName);
+            console.log(process.env);
 
             //appending random number to the file name to avoid overwriting
             const random = Math.floor(Math.random() * 100000);
